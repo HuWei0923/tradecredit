@@ -11,7 +11,8 @@
                 <el-button type="primary" @click="doSearch()">查询</el-button>
             </div>
             <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%" stripe
-                @selection-change="handleSelectionChange" v-loading="loading">
+                @selection-change="handleSelectionChange" v-loading="loading"
+                :default-sort="{prop: 'status', order: 'descending'}">
                 <el-table-column type="selection" width="55">
                 </el-table-column>
                 <!--<el-table-column
@@ -38,7 +39,7 @@
                 </el-table-column>
                 <el-table-column prop="mobile" label="手机号">
                 </el-table-column>
-                <el-table-column prop="status" label="状态" width="100">
+                <el-table-column prop="status" label="状态" width="100" sortable>
                     <template slot-scope="scope">
                         <el-tag :type="scope.row.staTxt === '已启用' ? 'primary' : 'info'" disable-transitions>
                             {{scope.row.staTxt}}</el-tag>

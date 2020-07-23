@@ -8,8 +8,8 @@
                 <ul class="fl-right clear navHeader_list">
                     <!--<li class="active">资信门户</li>
             <li>数据分析</li>-->
-                    <li v-if="isLogin" @click="joinBtn">登录</li>
-                    <li v-else @click="loginOut"> 用户 : {{userName}} | 退出</li>
+                    <li v-if="!loginStatus" @click="joinBtn">登录</li>
+                    <li v-else @click="loginOut"> 用户 : {{$cookies.get('name')}} | 退出</li>
                 </ul>
             </div>
         </div>
@@ -35,6 +35,11 @@
     import axios from 'axios';
     export default {
         name: "allHeader",
+        props: {
+            loginStatus: {
+                type: Boolean,
+            }
+        },
         data() {
             return {
                 searchText: '',
@@ -65,7 +70,7 @@
                     },
                     url: this.$api.latestWords,
                     data: {
-                        userId: this.$cookies.get('userId')
+                        "userid": this.$cookies.get('userId')
                     }
                 }).then(res => {
                     if (res.status == 200) {
@@ -76,7 +81,6 @@
                 //axios.post(this.$api.latestWords,{});
             },
             search() {
-                console.log("134")
                 var _this = this
                 if (_this.searchText == '' || undefined) {
                     alert('请输入搜索内容')
