@@ -8,7 +8,7 @@
                 <ul class="fl-right clear navHeader_list">
                     <!--<li class="active">资信门户</li>
             <li>数据分析</li>-->
-                    <li v-if="!loginStatus" @click="joinBtn">登录</li>
+                    <li v-if="isLogin" @click="joinBtn">登录</li>
                     <li v-else @click="loginOut"> 用户 : {{$cookies.get('name')}} | 退出</li>
                 </ul>
             </div>
@@ -49,11 +49,12 @@
             }
         },
         mounted() {
+            this.isLogin = !this.loginStatus
             if (this.$cookies.get('token')) {
-                this.isLogin = false
+                // this.isLogin = false
                 this.userName = this.$cookies.get('name')
             } else {
-                this.isLogin = true
+                //this.isLogin = true
             }
             this.getSearch()
             if (this.$route.query.text) {
@@ -81,6 +82,13 @@
                 //axios.post(this.$api.latestWords,{});
             },
             search() {
+                //console.log('123')
+                if (this.$cookies.get('token')) {
+                    this.isLogin = false
+                    //this.userName = this.$cookies.get('name')
+                } else {
+                    this.isLogin = true
+                }
                 var _this = this
                 if (_this.searchText == '' || undefined) {
                     alert('请输入搜索内容')

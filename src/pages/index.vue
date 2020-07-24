@@ -123,6 +123,7 @@
                             _this.$cookies.set("token", res.data.token, { expires: expiresTime, path: "/" });
                             _this.$cookies.set("name", res.data.username, { expires: expiresTime, path: "/" });
                             _this.$cookies.set("userId", res.data.userId, { expires: expiresTime, path: "/" });
+                            sessionStorage.setItem('username', res.data.username)
                             _this.isLogin = true
                             setTimeout(function () {
                                 this.$cookies.set("token", '');

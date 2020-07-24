@@ -8,6 +8,10 @@
             <div class="clear manageTableTitle">
                 <el-input class="fl-left manageTableInput" v-model="userName" placeholder="请输入用户名" clearable></el-input>
                 <el-input class="fl-left manageTableInput" v-model="userCode" placeholder="请输入工号" clearable></el-input>
+                <el-select v-model="status" placeholder="请选择状态">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
                 <el-button type="primary" @click="doSearch()">查询</el-button>
             </div>
             <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%" stripe
@@ -97,7 +101,18 @@
                 userName: '',
                 userCode: '',
                 pages: 5,
-                loading: false
+                loading: false,
+                status: '',
+                options: [
+                    {
+                        label: '已启用',
+                        value: '1'
+                    },
+                    {
+                        label: '已停用',
+                        value: '0'
+                    }
+                ]
             }
         },
         created() {
@@ -117,7 +132,8 @@
                         "pageIndex": page ? page : 1,
                         "pageSize": this.page.pageSize,
                         "username": this.userCode,
-                        "name": this.userName
+                        "name": this.userName,
+                        "status": this.status
                     }
                 }).then(res => {
                     //console.log(res);
