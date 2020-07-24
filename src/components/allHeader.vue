@@ -7,7 +7,7 @@
                 </router-link>
                 <ul class="fl-right clear navHeader_list">
                     <!--<li class="active">资信门户</li>
-            <li>数据分析</li>-->
+                    <li>数据分析</li>-->
                     <li v-if="isLogin" @click="joinBtn">登录</li>
                     <li v-else @click="loginOut"> 用户 : {{$cookies.get('username')}} | 退出</li>
                 </ul>
@@ -83,7 +83,7 @@
             },
             search() {
                 //console.log('123')
-                if (this.$cookies.get('token')) {
+                if (this.$cookies.get('token')||this.$cookies.get('username')) {
                     this.isLogin = false
                     //this.userName = this.$cookies.get('name')
                 } else {
@@ -114,6 +114,7 @@
             loginOut() {
                 this.$cookies.set("token", '');
                 this.$cookies.remove("token");
+                this.$cookies.remove("username");
                 // console.log(Cookie.get("token"))
                 if (!this.$cookies.get("token")) {
                     alert("退出完成");

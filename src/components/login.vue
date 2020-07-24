@@ -46,6 +46,7 @@
                   var millisecond = new Date().getTime();
                   var expiresTime = new Date(millisecond + 60 * 1000 * 30);
                   _this.$cookies.set("token",res.data.token, {expires: expiresTime ,path:"/"});
+                  _this.$cookies.set("username",res.data.name, {expires: expiresTime ,path:"/"});
                   _this.$cookies.set("name",res.data.username, {expires: expiresTime ,path:"/"});
                   _this.$cookies.set("userId",parseInt(res.data.userId), {expires: expiresTime ,path:"/"});
                   setTimeout(function(){

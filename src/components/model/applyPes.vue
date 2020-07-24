@@ -127,8 +127,8 @@
                     url: this.$api.zhongxinbao,
                     data: this.report
                 }).then(res => {
-                    //console.log(res.data.returnMsg);
-                    this.$message.success(res.data.returnMsg)
+                    console.log(res.data);
+                    this.$message.success(res.data.returnMsg||res.data.returnCode)
                     this.hideshowPes()
                 }).catch(err => {
                     console.log(err);
@@ -161,7 +161,6 @@
                     if (res.status == 200) {
                         this.$message.success(res.data.returnMsg)
                     } else {
-
                     }
                     this.hideshowPes()
                 }).catch(err => {

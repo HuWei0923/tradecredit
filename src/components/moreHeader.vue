@@ -29,7 +29,7 @@
       mounted() {
         if(this.$cookies.get('token')){
           this.isLogin = false
-          this.userName = this.$cookies.get('name')
+          this.userName = this.$cookies.get('username')
         }else{
           this.isLogin = true
         }
@@ -43,6 +43,7 @@
         loginOut(){
           this.$cookies.set("token", '');
           this.$cookies.remove("token");
+          this.$cookies.remove("username");
           // console.log(Cookie.get("token"))
           if(!this.$cookies.get("token")){
             alert("退出完成");
