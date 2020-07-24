@@ -4,6 +4,7 @@ import index from '@/pages/index'
 import proList from '@/pages/proList'
 import essInfo from '@/pages/essInfo'
 import management from '@/pages/management'
+import viewReportSource from "@/pages/viewReportSource";
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push (location) {
@@ -33,6 +34,11 @@ export default new Router({
             path: '/management',
             name: 'management',
             component: management
+        },
+        {
+          path: '/viewReportSource',
+          name: 'viewReportSource',
+          component: viewReportSource
         }
     ],
     mode: 'history'
