@@ -9,7 +9,7 @@
                     <!--<li class="active">资信门户</li>
             <li>数据分析</li>-->
                     <li v-if="isLogin" @click="joinBtn">登录</li>
-                    <li v-else @click="loginOut"> 用户 : {{$cookies.get('name')}} | 退出</li>
+                    <li v-else @click="loginOut"> 用户 : {{$cookies.get('username')}} | 退出</li>
                 </ul>
             </div>
         </div>

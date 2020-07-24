@@ -123,13 +123,15 @@
                             _this.$cookies.set("token", res.data.token, { expires: expiresTime, path: "/" });
                             _this.$cookies.set("name", res.data.username, { expires: expiresTime, path: "/" });
                             _this.$cookies.set("userId", res.data.userId, { expires: expiresTime, path: "/" });
-                            sessionStorage.setItem('username', res.data.username)
+                            _this.$cookies.set("username", res.data.name, { expires: expiresTime, path: "/" });
+                            //sessionStorage.setItem('username', res.data.username)
                             _this.isLogin = true
                             setTimeout(function () {
                                 this.$cookies.set("token", '');
                                 this.$cookies.remove("token");
                                 this.$cookies.remove("name");
                                 this.$cookies.remove("userId");
+                                this.$cookies.remove("username");
                                 alert('登录失效，请重新登录');
                             }, 1800000)
                         } else {
