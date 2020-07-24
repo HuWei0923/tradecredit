@@ -82,8 +82,8 @@
                 //axios.post(this.$api.latestWords,{});
             },
             search() {
-                //console.log('123')
-                if (this.$cookies.get('token')||this.$cookies.get('username')) {
+                console.log(this.isLogin)
+                if (this.$cookies.get('token')) {
                     this.isLogin = false
                     //this.userName = this.$cookies.get('name')
                 } else {
@@ -99,6 +99,9 @@
                     _this.$router.push({ name: 'proList', query: { text: _this.searchText } })
                     //console.log(_this.searchText);
                 }
+              if (!this.isLogin && this.$cookies.get('username')){
+                this.isLogin = false
+              }
             },
             /*最近搜索事件*/
             searchKey(val) {

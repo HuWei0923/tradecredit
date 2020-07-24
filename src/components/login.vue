@@ -53,6 +53,7 @@
                     _this.$cookies.set("token", '');
                     _this.$cookies.remove("token");
                     _this.$cookies.remove("name");
+                    _this.$cookies.remove("username");
                     _this.$cookies.remove("userId");
                     alert('登录失效，请重新登录');
                   },1800000)

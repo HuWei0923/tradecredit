@@ -1,6 +1,6 @@
 <template>
     <div>
-        <allHeader @child="getInfo"></allHeader>
+        <allHeader @child="getInfo" :loginStatus="isLogin"></allHeader>
         <!--中间内容-->
         <div class="index_content flex">
             <!--检测列表-->
@@ -64,6 +64,7 @@
                 //followList:['浙江英特集团有限公司','浙江英特集团有限公司','浙江英特集团有限公司','浙江英特集团有限公司','浙江英特集团有限公司','浙江英特集团有限公司','浙江英特集团有限公司']
                 followList: [],
                 sourceType: '',
+                isLogin: true,
             }
         },
         watch: {
@@ -72,7 +73,14 @@
             }
         },
         created() {
-            this.getCare()
+          if (this.$route.query.username) {
+            this.loginInfo(this.$route.query.username)
+          } else if (this.$cookies.get('token')) {
+            this.isLogin = true
+          } else {
+            this.isLogin = false
+          }
+          this.getCare()
         },
         mounted() {
             //console.log(this.$route.params.text);
